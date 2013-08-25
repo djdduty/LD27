@@ -71,7 +71,6 @@ public class Game {
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
 		try {
-			Textures.get().add("nulltex", "res/images/nulltex.png");
 			manager.init(this);
 			
 			long lastTime = System.currentTimeMillis();

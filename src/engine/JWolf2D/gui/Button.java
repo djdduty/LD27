@@ -1,6 +1,7 @@
 package engine.JWolf2D.gui;
 
 import engine.JWolf2D.geom.Vector2;
+import engine.JWolf2D.geom.Vector3;
 import engine.JWolf2D.resource.Textures;
 
 public class Button extends Clickable {
@@ -38,10 +39,14 @@ public class Button extends Clickable {
 	}
 	
 	public void render() {
-		if(down)
+		if(down) {
 			sprite.setTexture(texNameDown);
-		else
+			setLabelColor(new Vector3(1,0,0));
+		}else {
 			sprite.setTexture(texName);
+			setLabelColor(new Vector3(0,1,0));
+		}
+		
 		sprite.render(0, 0);
 	}
 	
@@ -59,5 +64,9 @@ public class Button extends Clickable {
 	
 	public int getHeight() {
 		return Textures.get().get(texName).getTextureHeight();
+	}
+	
+	public void setLabelColor(Vector3 col) {
+		label.setColor(col);
 	}
 }

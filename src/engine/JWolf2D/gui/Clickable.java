@@ -12,7 +12,7 @@ public class Clickable {
 	protected String texName, texNameDown;
 	protected Sprite sprite;
 	protected Vector2 pos;
-	protected boolean down = false;;
+	protected boolean down = false, clicked = false;
 	
 	public void init() {
 		sprite = new Sprite(pos, texName);
@@ -20,10 +20,17 @@ public class Clickable {
 	}
 	
 	public void update() {
+		if(Mouse.getEventButton() == 0 && Mouse.getEventButtonState() == false) {
+			if(rect.containsPoint(new Vector2(Mouse.getX(), (Mouse.getY()*-1)+Display.getHeight()))) {
+				clicked = true;
+			}
+		}else {
+			clicked = false;
+		}
+		
 		if(Mouse.getEventButton() == 0 && Mouse.getEventButtonState()) {
 			if(rect.containsPoint(new Vector2(Mouse.getX(), (Mouse.getY()*-1)+Display.getHeight()))) {
 				down = true;
-				System.out.println("Clickable clicked!");
 			}
 		}else {
 			down = false;
@@ -31,8 +38,8 @@ public class Clickable {
 	}
 	
 	public boolean clicked() {
-		boolean temp = down;
-		down = false;
+		boolean temp = clicked;
+		clicked = false;
 		return temp;
 	}
 	
